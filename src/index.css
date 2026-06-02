@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Global transition tokens */
+:root{
+  --ease-default: cubic-bezier(.22,1,.36,1);
+  --dur-fast: 180ms;
+  --dur-default: 380ms;
+  --dur-slow: 700ms;
+  /* Nav active tokens */
+  --brand: #805374;
+  --brand-weak: rgba(128,83,116,0.12);
+}
+
+/* Smooth image transitions */
+.img-smooth{
+  transition: transform var(--dur-default) var(--ease-default), filter var(--dur-default) var(--ease-default);
+}
+
+/* Buttons */
+.btn-smooth{
+  transition: transform var(--dur-fast) var(--ease-default), background-color var(--dur-default) var(--ease-default), box-shadow var(--dur-default) var(--ease-default);
+}
+
+/* Cards */
+.card-smooth{
+  transition: transform var(--dur-default) var(--ease-default), box-shadow var(--dur-default) var(--ease-default), opacity var(--dur-default) var(--ease-default);
+}
+
+/* Utility to subtly elevate on hover */
+.hover-elevate:hover{ transform: translateY(-6px) scale(1.01); box-shadow: 0 12px 30px rgba(2,6,23,0.08); }
+
+/* Reduce default focus outlines; provide focus-visible underline for nav links */
+/* Keep minimal focus styles for interactive elements but avoid heavy outlines on nav */
+a:focus, button:focus{ outline: none }
+
+/* Show subtle outline only for keyboard users (focus-visible) for interactive elements */
+*:focus:not(:focus-visible) { outline: none; }
+
+/* Global focus-visible style for accessibility (keeps outlines subtle)
+   Apply only to navigational controls (links, buttons, nav items) so
+   form inputs (search, textareas, selects) don't show the outline. */
+:where(a,button,summary,[role="button"],.nav-link):focus-visible {
+  outline: 3px solid rgba(128,83,116,0.14);
+  outline-offset: 3px;
+}
+
+/* Keyboard-visible focus for nav links (underline) */
+.nav-link:focus-visible::after {
+  transform: scaleX(1);
+  background: rgba(128,83,116,0.12);
+}
+
+/* Active nav utility: gentle ring and background */
+.nav-active {
+  box-shadow: 0 6px 18px rgba(128,83,116,0.06);
+  background-color: rgba(128,83,116,0.04);
+  border-radius: 8px;
+}
+
+/* Animated underline for desktop nav links */
+.nav-link {
+  --underline-h: 3px;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: var(--underline-h);
+  background: transparent;
+  border-radius: 99px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--dur-default) var(--ease-default), background-color var(--dur-default) var(--ease-default);
+}
+
+.nav-link:hover::after,
+.nav-link:focus::after {
+  transform: scaleX(1);
+  background: rgba(128,83,116,0.08);
+}
+
+.nav-link.active::after {
+  transform: scaleX(1);
+  background: rgba(128,83,116,0.18);
+}
+
+/* Reduced motion preference</n+   Respect user preferences */
+@media (prefers-reduced-motion: reduce){
+  * { transition-duration: 0ms !important; animation-duration: 0ms !important; }
+}
