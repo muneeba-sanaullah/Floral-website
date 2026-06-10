@@ -6,7 +6,7 @@ const app = express()
 app.use(cors({ origin: true }))
 app.use(express.json())
 
-// 🟢 MOCK CHECKOUT ONLY (Stripe removed)
+// MOCK CHECKOUT ONLY (Stripe removed)
 app.post('/mock-checkout-session', async (req, res) => {
   try {
     const { items = [], successUrl } = req.body || {}
@@ -43,7 +43,7 @@ app.post('/mock-checkout-session', async (req, res) => {
   }
 })
 
-// 🟢 ORDERS API (UNCHANGED)
+//  ORDERS API (UNCHANGED)
 app.get('/orders', async (req, res) => {
   try {
     const rows = await db.all(

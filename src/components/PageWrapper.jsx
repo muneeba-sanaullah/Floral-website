@@ -32,7 +32,7 @@ export default function PageWrapper({
         duration: 0.4, 
         ease: [0.21, 1.02, 0.43, 1.01] // Refined luxury ease-out curves
       }}
-      // ⚡ PERFORMANCE FIX: Added min-h-screen to stabilize layout heights and prevent footer shifting
+      // added min-h-screen to stabilize layout heights and prevent footer shifting
       // Combined your default container constraints with any passed className arguments
       className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[80vh] w-full ${className}`.trim()}
       // Locks hardware acceleration layers active to stop text blurring during movement frames

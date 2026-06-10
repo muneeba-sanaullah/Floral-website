@@ -18,7 +18,7 @@ export default function Cart() {
   const { cart, increaseQty, decreaseQty, removeFromCart, clearCart } = useContext(CartContext);
   const [checkoutLoading, setCheckoutLoading] = React.useState(false);
 
-  // ⚡ PERFORMANCE FIX: useMemo caches cart value sums to prevent calculation jank
+  // PERFORMANCE FIX: useMemo caches cart value sums to prevent calculation jank
   const { totalAmount, totalItems } = useMemo(() => {
     return cart.reduce(
       (acc, item) => {
@@ -31,7 +31,7 @@ export default function Cart() {
     );
   }, [cart]);
 
-  // 🚀 CLEANUP: Extracted checkout controller handler out of the layout JSX
+  // Extracted checkout controller handler out of the layout JSX
   const handleCheckout = async (e) => {
     e.preventDefault(); // Safety stop
     if (cart.length === 0 || checkoutLoading) return;
@@ -46,7 +46,7 @@ export default function Cart() {
         quantity: item.quantity,
       }));
 
-      // 💼 PORTFOLIO FIX: Uses environmental fallback mapping to prevent deployment checkout crashes
+      // Uses environmental fallback mapping to prevent deployment checkout crashes
       const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4242";
       
       const resp = await fetch(`${API_URL}/mock-checkout-session`, {
@@ -144,7 +144,7 @@ export default function Cart() {
                   key={item.id}
                   className="flex flex-col sm:flex-row sm:items-center gap-4 bg-white/40 backdrop-blur-lg p-4 rounded-2xl border border-white/40 shadow-sm transition-all duration-300 hover:shadow-md"
                 >
-                  {/* 📱 MOBILE RESPONSIVE ADAPTIONS */}
+                  {/* MOBILE RESPONSIVE ADAPTIONS */}
                   <img
                     src={item.image}
                     alt={item.name}
@@ -166,14 +166,14 @@ export default function Cart() {
                       <button
                         type="button"
                         onClick={() => {
-                          // 🔒 ZERO QUANTITY SAFETY PROTECTION
+                          // ZERO QUANTITY SAFETY PROTECTION
                           if (item.quantity <= 1) {
                             removeFromCart(item.id);
                           } else {
                             decreaseQty(item.id);
                           }
                         }}
-                        className="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-full hover:bg-gray-200 text-gray-600 transition font-medium text-lg"
+                        className="w-8 h-8 cursor-pointer flex items-center justify-center bg-gray-100 rounded-full hover:bg-gray-200 text-gray-600 transition font-medium text-lg"
                         aria-label="Decrease quantity"
                       >
                         −
@@ -186,7 +186,7 @@ export default function Cart() {
                       <button
                         type="button"
                         onClick={() => increaseQty(item.id)}
-                        className="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-full hover:bg-gray-200 text-gray-600 transition font-medium text-lg"
+                        className="w-8 h-8 cursor-pointer flex items-center justify-center bg-gray-100 rounded-full hover:bg-gray-200 text-gray-600 transition font-medium text-lg"
                         aria-label="Increase quantity"
                       >
                         +
@@ -197,7 +197,7 @@ export default function Cart() {
                   <button
                     type="button"
                     onClick={() => removeFromCart(item.id)}
-                    className="text-red-400 text-xs font-medium hover:text-red-500 transition self-end sm:self-center bg-red-50/50 hover:bg-red-50 px-3 py-1.5 rounded-full"
+                    className="text-red-400 cursor-pointer text-xs font-medium hover:text-red-500 transition self-end sm:self-center bg-red-50/50 hover:bg-red-50 px-3 py-1.5 rounded-full"
                   >
                     Remove
                   </button>
@@ -234,7 +234,7 @@ export default function Cart() {
               type="button"
               onClick={handleCheckout}
               disabled={checkoutLoading || cart.length === 0}
-              className="w-full mt-6 bg-[#805374] text-white py-3 rounded-full font-medium hover:bg-[#6e4360] active:scale-[0.98] transition-all disabled:opacity-50 disabled:pointer-events-none shadow-sm tracking-wide text-sm"
+              className="w-full cursor-pointer mt-6 bg-[#805374] text-white py-3 rounded-full font-medium hover:bg-[#6e4360] active:scale-[0.98] transition-all disabled:opacity-50 disabled:pointer-events-none shadow-sm tracking-wide text-sm"
             >
               {checkoutLoading ? (
                 <div className="flex items-center justify-center gap-2">

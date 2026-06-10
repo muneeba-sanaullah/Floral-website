@@ -10,10 +10,10 @@ function ProductCard({ product }) {
   // Safely fallback to prevent runtime deployment crashes if fields are missing
   const { id, name = "Unnamed Arrangement", price = 0, image = "", category = "" } = product || {};
 
-  // ⚡ PERFORMANCE FIX: Evaluates inclusion accurately without breaking render frames
+  // Evaluates inclusion accurately without breaking render frames
   const isInCart = cart?.some((item) => item.id === id) ?? false;
 
-  // 🐛 LIFECYCLE BUG FIX: Properly clear the timer when the component unmounts to prevent memory leaks
+  // Properly clear the timer when the component unmounts to prevent memory leaks
   useEffect(() => {
     let timer;
     if (justAdded) {
@@ -31,7 +31,7 @@ function ProductCard({ product }) {
     }
   };
 
-  // 💼 PORTFOLIO CONFIG: Internationalized currency layout string formatting
+  // Internationalized currency layout string formatting
   const formattedPrice = new Intl.NumberFormat("en-PK", {
     style: "currency",
     currency: "PKR",
@@ -52,7 +52,7 @@ function ProductCard({ product }) {
           src={image}
           alt={name}
           loading="lazy"
-          // 🔒 SECURITY/CLS FIX: Replaced explicit staggered height variables with fixed aspect container mapping bounds
+          // SECURITY/CLS FIX: Replaced explicit staggered height variables with fixed aspect container mapping bounds
           className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
         />
 
@@ -66,7 +66,7 @@ function ProductCard({ product }) {
           <button
             type="button"
             onClick={handleAdd}
-            className={`px-5 py-2.5 rounded-full text-xs font-semibold shadow-md transition-all duration-300 transform active:scale-95 ${
+            className={`px-5 py-2.5 cursor-pointer rounded-full text-xs font-semibold shadow-md transition-all duration-300 transform active:scale-95 ${
               isInCart || justAdded
                 ? "bg-green-600 text-white cursor-default"
                 : "bg-white text-[#805374] hover:bg-[#805374] hover:text-white"
@@ -90,7 +90,7 @@ function ProductCard({ product }) {
           )}
         </div>
 
-        {/* 📱 MOBILE FIX: Clear touch targets that change style dynamically for responsive click support */}
+        {/* MOBILE FIX: Clear touch targets that change style dynamically for responsive click support */}
         <button
           type="button"
           onClick={handleAdd}
@@ -109,5 +109,5 @@ function ProductCard({ product }) {
   );
 }
 
-// ⚡ PERFORMANCE FIX: Wrap the component in React.memo to prevent unnecessary catalog grid item re-renders
+// Wrap the component in React.memo to prevent unnecessary catalog grid item re-renders
 export default memo(ProductCard);

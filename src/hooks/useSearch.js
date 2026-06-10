@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
-// ⭐ PORTFOLIO REFACTOR: Hook now accepts a dynamic inventory collection array 
+//  Hook now accepts a dynamic inventory collection array 
 // instead of remaining locked to a hardcoded local static mockup data file
 export default function useSearch(liveProductsCollection = []) {
   const [search, setSearch] = useState("");
@@ -28,7 +28,7 @@ export default function useSearch(liveProductsCollection = []) {
     return search.toLowerCase().trim();
   }, [search]);
 
-  // ⭐ PERFORMANCE OPTIMIZATION: Memoize result calculations to minimize computation loops
+  // Memoize result calculations to minimize computation loops
   const filteredProducts = useMemo(() => {
     if (!sanitizedQuery || liveProductsCollection.length === 0) return [];
 
@@ -43,7 +43,7 @@ export default function useSearch(liveProductsCollection = []) {
     });
   }, [sanitizedQuery, liveProductsCollection]);
 
-  // 🐛 BUG FIX: Stabilized tracking effect to avoid infinite field resetting cascades
+  // Stabilized tracking effect to avoid infinite field resetting cascades
   useEffect(() => {
     if (location.pathname === "/products") {
       const qp = new URLSearchParams(location.search);
@@ -92,7 +92,7 @@ export default function useSearch(liveProductsCollection = []) {
     const cleanSearch = search.trim();
     const qp = new URLSearchParams(location.search);
 
-    // 💼 UX REFINEMENT: If query is empty, remove search parameter from line entirely
+    // If query is empty, remove search parameter from line entirely
     if (!cleanSearch) {
       qp.delete("search");
       const currentCategory = qp.get("category");

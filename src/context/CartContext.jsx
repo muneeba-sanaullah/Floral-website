@@ -63,7 +63,7 @@ export function CartProvider({ children }) {
     setCart(prev => prev.filter(item => String(item.id) !== String(id)));
   };
 
-  // FIXED: Now clears both state AND localStorage
+  // Now clears both state AND localStorage
   const clearCart = () => {
     setCart([]);
   };

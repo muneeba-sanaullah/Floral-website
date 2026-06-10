@@ -10,7 +10,7 @@ function Products() {
 
   const navigate = useNavigate();
   
-  // ⭐ PORTFOLIO CLEANUP: Replaced manual search parsers with React Router's native state hook
+  // Replaced manual search parsers with React Router's native state hook
   const [searchParams] = useSearchParams();
   const selectedCategory = searchParams.get("category");
   const searchQuery = searchParams.get("search");
@@ -22,7 +22,7 @@ function Products() {
     setLoading(true);
     setError(null);
 
-    // 🚀 DEPLOYMENT ARCHITECTURE FIX: Fetch pure repository values from backend server context
+    // Fetch pure repository values from backend server context
     const params = {};
     if (selectedCategory && selectedCategory !== "All") params.category = selectedCategory;
     if (searchQuery) params.search = searchQuery;
@@ -47,7 +47,7 @@ function Products() {
     };
   }, [selectedCategory, searchQuery]);
 
-  // ⭐ PERFORMANCE OPTIMIZATION: Memoize backend array returns to protect downstream renders
+  // Memoize backend array returns to protect downstream renders
   const displayedProducts = useMemo(() => {
     return products;
   }, [products]);
@@ -67,7 +67,7 @@ function Products() {
 
       {/* LOADING STATE PLACEHOLDERS */}
       {loading ? (
-        /* 💼 RECRUITER QUALITY FEATURE: Shimmering skeleton grid loader replacing raw text displays */
+        /* Shimmering skeleton grid loader replacing raw text displays */
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
           {[...Array(8)].map((_, i) => (
             <div key={i} className="animate-pulse flex flex-col space-y-4">
@@ -95,7 +95,7 @@ function Products() {
           </button>
         </div>
       ) : (
-        /* 📱 RESPONSIVE GRID LAYOUT ACCORDANCE FIX */
+        /*  RESPONSIVE GRID LAYOUT ACCORDANCE FIX */
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
           {displayedProducts.map((product) => (
             <ProductCard key={product.id} product={product} />

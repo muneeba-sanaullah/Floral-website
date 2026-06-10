@@ -3,7 +3,7 @@
 const API_BASE = import.meta.env.VITE_API_BASE || "";
 
 /**
- * ⚡ PERFORMANCE FIX: Pre-compiles tokenized parameters 
+ * Pre-compiles tokenized parameters 
  * out of the core map loop to optimize memory allocation.
  */
 function filterLocal(params = {}) {
@@ -91,7 +91,7 @@ export const getProducts = async (params = {}, options = {}) => {
   } catch (err) {
     clearTimeout(timeoutId);
     
-    // 💼 PORTFOLIO presentation: explicitly logs errors so they are trackable in staging
+    // explicitly logs errors so they are trackable in staging
     console.warn(`[API Layer Fallback] Using offline mock data store. Reason: ${err.message}`);
     
     return filterLocal(params);

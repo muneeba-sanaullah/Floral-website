@@ -23,7 +23,7 @@ const Contact = lazy(() => import("./pages/Contact"));
 const Cart = lazy(() => import("./components/Cart")); 
 const CheckoutSuccess = lazy(() => import("./pages/CheckoutSuccess"));
 
-// 🐛 ROUTE SCROLL BUG FIX: Automated utility component to reset window scroll position on path updates
+// Automated utility component to reset window scroll position on path updates
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -119,7 +119,7 @@ function App() {
       <div>
         <Navbar />
 
-        {/* 🚀 DEPLOYMENT PERF FIX: AnimatePresence wraps Suspense to preserve page exit transitions */}
+        {/* AnimatePresence wraps Suspense to preserve page exit transitions */}
         <AnimatePresence mode="wait" initial={false}>
           <Routes location={location} key={location.pathname}>
             

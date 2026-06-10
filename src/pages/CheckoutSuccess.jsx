@@ -113,7 +113,7 @@ setTimeout(() => {
               localStorage.removeItem("completedOrder");
               navigate("/products");
             }}
-            className="px-8 py-3.5 bg-[#805374] text-white rounded-full text-sm font-medium shadow-md hover:opacity-90 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 w-full sm:w-auto"
+            className="px-8 cursor-pointer py-3.5 bg-[#805374] text-white rounded-full text-sm font-medium shadow-md hover:opacity-90 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 w-full sm:w-auto"
           >
             Continue Discovery Collection
           </button>

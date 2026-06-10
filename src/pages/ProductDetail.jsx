@@ -46,7 +46,7 @@ function ProductDetail() {
   // 🐛 BUG FIX: Coerce string/number variations safely to check cart status accurately
   const isInCart = product ? cart.some((item) => String(item.id) === String(product.id)) : false;
 
-  // 💼 RECRUITER QUALITY FEATURE: Clean, layout-stable skeleton loader
+  // Clean, layout-stable skeleton loader
   if (loading) {
     return (
       <div className="w-full mt-24 px-4 sm:px-6 lg:px-10 max-w-5xl mx-auto animate-pulse">
@@ -85,7 +85,7 @@ function ProductDetail() {
       {/* NAVIGATION BAR HEADER LINK */}
       <button
         onClick={() => navigate(-1)}
-        className="mb-8 text-sm font-medium text-gray-500 hover:text-[#805374] flex items-center gap-1 group transition"
+        className="mb-8 text-sm font-medium cursor-pointer text-gray-500 hover:text-[#805374] flex items-center gap-1 group transition"
       >
         <span className="group-hover:-translate-x-1 transition-transform">←</span> Back
       </button>
@@ -107,7 +107,7 @@ function ProductDetail() {
             {product.name}
           </h1>
           
-          {/* ⭐ DATA CLEANUP: Dynamic description injection falling back to boilerplate text safely */}
+          {/* DATA CLEANUP: Dynamic description injection falling back to boilerplate text safely */}
           <p className="text-gray-600 mt-4 leading-relaxed">
             {product.description || "A beautifully handcrafted premium floral arrangement meticulously selected and compiled by our master artisans to bring natural elegance to your space."}
           </p>
@@ -116,9 +116,9 @@ function ProductDetail() {
             Rs. {Number(product.price).toLocaleString()}
           </div>
 
-          {/* ⭐ PREMIUM OPTIMIZATION: Advanced item quantity increment counter controls */}
+          {/* PREMIUM OPTIMIZATION: Advanced item quantity increment counter controls */}
           {!isInCart && (
-            <div className="mt-6 flex items-center gap-4">
+            <div className="mt-6 flex items-center gap-4 cursor-pointer">
               <label className="text-sm font-medium text-gray-500">Quantity:</label>
               <div className="flex items-center border border-gray-200 rounded-xl bg-white">
                 <button 
@@ -138,13 +138,13 @@ function ProductDetail() {
           <button
             onClick={() => {
               if (isInCart) {
-                navigate("/cart"); // ⭐ FEATURE: Direct conversion flow straight to checkouts
+                navigate("/cart"); // Direct conversion flow straight to checkouts
               } else {
                 // Pass product along with selected operational quantity modifiers
                 addToCart({ ...product, quantity });
               }
             }}
-            className={`mt-8 px-8 py-3.5 rounded-full text-sm font-medium shadow-sm transition-all duration-300 w-full md:w-auto md:self-start flex items-center justify-center gap-2 ${
+            className={`mt-8 px-8 py-3.5 rounded-full text-sm cursor-pointer font-medium shadow-sm transition-all duration-300 w-full md:w-auto md:self-start flex items-center justify-center gap-2 ${
               isInCart
                 ? "bg-[#805374] text-white hover:opacity-95"
                 : "bg-[#805374] text-white hover:opacity-90 hover:-translate-y-0.5 active:translate-y-0"

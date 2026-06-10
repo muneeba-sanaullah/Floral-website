@@ -5,10 +5,10 @@ import { FiSearch, FiShoppingCart, FiMenu, FiX } from "react-icons/fi";
 import filterProducts from "../utils/filterProducts";
 import useDebounce from "../hooks/useDebounce";
 
-// 📦 FALLBACK SOURCE: Re-import your local product file to prevent empty states
+// Re-import your local product file to prevent empty states
 import localProductsMock from "../../server/data/products";
 
-// 🛠️ CUSTOM HOOK IMPORT: Bring in your optimized click-away hook
+// Bring in your optimized click-away hook
 import useOutsideClick from "../hooks/useOutsideClick";
 
 function Navbar({ liveProducts = [] }) {
@@ -28,7 +28,7 @@ function Navbar({ liveProducts = [] }) {
   const inputRef = useRef(null);
   const mobileInputRef = useRef(null); // Added ref for mobile clearing focus
 
-  // ⚡ WIRE UP THE OUTSIDE CLICK HOOK:
+  // WIRE UP THE OUTSIDE CLICK HOOK:
   useOutsideClick([desktopSearchRef, mobileSearchRef], () => {
     setShowDropdown(false);
     setActiveIndex(-1);
@@ -67,7 +67,7 @@ function Navbar({ liveProducts = [] }) {
 
   const debouncedQ = useDebounce(sanitizedQuery, 180);
 
-  // 🛠️ SMART FIXED FILTER: Uses live database products if available, otherwise uses local files
+  // Uses live database products if available, otherwise uses local files
   const filteredProducts = useMemo(() => {
     if (!debouncedQ) return [];
     
@@ -254,7 +254,7 @@ function Navbar({ liveProducts = [] }) {
             
             {/* Mobile Search Input Form Wrapper */}
             <form ref={mobileSearchRef} onSubmit={handleSearchSubmit} className="relative block w-full">
-              {/* 🛠️ DROPDOWN FIX: Added styling focus bounds matching your premium desktop input row */}
+              {/* Added styling focus bounds matching your premium desktop input row */}
               <div className="flex items-center bg-gray-50 border border-gray-100 focus-within:border-[#805374]/30 focus-within:bg-white rounded-xl px-4 py-2.5 transition-all duration-300">
                 <FiSearch className="text-gray-400 shrink-0" />
                 <input
@@ -265,7 +265,7 @@ function Navbar({ liveProducts = [] }) {
                   className="bg-transparent outline-none ml-2 w-full text-sm text-gray-800 placeholder-gray-400"
                   placeholder="Search bouquets..."
                 />
-                {/* ✕ MOBILE CROSS FIX: Render the clear cross directly inside mobile inputs when text exists */}
+                {/* Render the clear cross directly inside mobile inputs when text exists */}
                 {search && (
                   <button
                     type="button"
@@ -278,7 +278,7 @@ function Navbar({ liveProducts = [] }) {
                 )}
               </div>
 
-              {/* 🛠️ POSITION FIX: Dropdown position properties anchored perfectly below mobile inputs */}
+              {/* Dropdown position properties anchored perfectly below mobile inputs */}
               {showDropdown && search && filteredProducts.length > 0 && (
                 <div className="absolute left-0 right-0 mt-2 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden z-50 max-h-60 overflow-y-auto">
                   {filteredProducts.slice(0, 5).map((p) => (

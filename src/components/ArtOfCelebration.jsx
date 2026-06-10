@@ -71,7 +71,7 @@ export default function ArtOfCelebration() {
         </p>
       </div>
 
-      {/* 📱 RESPONSIVE BENTO GRID FIX: Math-corrected layout tracks with optimized row height maps */}
+      {/* Math-corrected layout tracks with optimized row height maps */}
       <motion.div 
         variants={containerVariants}
         initial="hidden"
@@ -93,7 +93,7 @@ export default function ArtOfCelebration() {
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
             />
             
-            {/* 🍏 PREMIUM GRADIENT & TEXT OVERLAY */}
+            {/* PREMIUM GRADIENT & TEXT OVERLAY */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-80 md:opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
             
             <div className="absolute bottom-4 left-4 right-4 z-10 transform translate-y-2 md:translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 ease-out hidden md:block">

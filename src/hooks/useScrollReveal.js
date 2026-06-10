@@ -8,21 +8,21 @@ import { useEffect, useRef, useState } from "react";
  * @param {boolean} options.triggerOnce Determines if hook disconnects instantly after first reveal pass
  */
 export default function useScrollReveal({
-  threshold = 0.08,        // 📱 MOBILE FIX: Lowered slightly from 0.15 to ensure tall elements animate on thin mobile screens
-  rootMargin = "0px 0px -40px 0px", // ⚡ PERFORMANCE FIX: Pre-loads elements 40px before hitting screen edge to prevent sudden pop-ins
-  triggerOnce = true        // 💼 PORTFOLIO CONFIG: Let developers choose between single or repeating reveals
+  threshold = 0.08,        // MOBILE FIX: Lowered slightly from 0.15 to ensure tall elements animate on thin mobile screens
+  rootMargin = "0px 0px -40px 0px", // PERFORMANCE FIX: Pre-loads elements 40px before hitting screen edge to prevent sudden pop-ins
+  triggerOnce = true        // PORTFOLIO CONFIG: Let developers choose between single or repeating reveals
 } = {}) {
   const ref = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // 🚀 DEPLOYMENT FIX: Defend your server-side rendering builds against missing global window execution frames
+    // Defend your server-side rendering builds against missing global window execution frames
     if (typeof window === "undefined" || !window.IntersectionObserver) {
       setIsVisible(true);
       return;
     }
 
-    // 🐛 LIFECYCLE BUG FIX: Capture current DOM element target snapshot to avoid mutable unmounting reference traps
+    // Capture current DOM element target snapshot to avoid mutable unmounting reference traps
     const currentTargetElement = ref.current;
     if (!currentTargetElement) return;
 

@@ -7,7 +7,7 @@ import { useEffect, useRef } from "react";
  */
 export default function useOutsideClick(ref, callback) {
   // Use a mutable ref to store the latest callback function structure.
-  // ⭐ PERFORMANCE FIX: This prevents the event listener from constantly tearing down and rebuilding
+  // This prevents the event listener from constantly tearing down and rebuilding
   // if the parent component forgets to wrap their callback function in a React.useCallback()
   const savedCallback = useRef(callback);
 
@@ -19,7 +19,7 @@ export default function useOutsideClick(ref, callback) {
     const handleClick = (event) => {
       const target = event.target;
 
-      // 🐛 BUG FIX: If the target element was unmounted during a click cascade event frame, ignore it
+      // If the target element was unmounted during a click cascade event frame, ignore it
       if (!target || !document.documentElement.contains(target)) return;
 
       // Normalize our inputs into an iterable array so developers can pass single or multiple refs
@@ -35,7 +35,7 @@ export default function useOutsideClick(ref, callback) {
       }
     };
 
-    // 📱 MOBILE & PERF FIX: Added touchstart for instant mobile responses and passed passive flag configuration
+    // Added touchstart for instant mobile responses and passed passive flag configuration
     document.addEventListener("mousedown", handleClick, { passive: true });
     document.addEventListener("touchstart", handleClick, { passive: true });
 

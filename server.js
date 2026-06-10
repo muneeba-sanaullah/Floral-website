@@ -36,7 +36,7 @@ const databaseFile = process.env.DATABASE_DISK_PATH
 let db = null;
 
 /**
- * 🐛 FIXED: Scope the database health gateway check EXCLUSIVELY to /api requests.
+ * Scope the database health gateway check EXCLUSIVELY to /api requests.
  * This guarantees that compiled static HTML/JS frontend assets load instantly.
  */
 app.use("/api", (req, res, next) => {
@@ -90,7 +90,7 @@ async function initializeDatabase() {
       }
       console.log(`Successfully seeded ${products.length} catalog items into SQLite storage.`);
     } catch (seedError) {
-      console.error("🛑 CRITICAL: Seeding pipeline execution failure:", seedError);
+      console.error(" CRITICAL: Seeding pipeline execution failure:", seedError);
       throw seedError; // Escalate failure to break the startup cycle defensively
     } finally {
       await insert.finalize();
@@ -112,14 +112,14 @@ app.get("/api/products", async (req, res, next) => {
     const values = [];
     let sql = "SELECT * FROM products";
 
-    // 🐛 FIXED: Protects database from evaluating client queries matching "All" literally
+    // Protects database from evaluating client queries matching "All" literally
     if (category && category.toLowerCase() !== "all") {
       filters.push("LOWER(category) = LOWER(?)");
       values.push(category.trim());
     }
 
     /**
-     * 📱 FIXED: Multi-word token analyzer.
+     * Multi-word token analyzer.
      * Splits incoming queries into chunks to mirror frontend search capabilities.
      */
     if (search) {
@@ -155,7 +155,7 @@ app.get("/api/products/:id", async (req, res, next) => {
   try {
     const productId = req.params.id;
 
-    // 🔒 SECURITY FIXED: Explicit verification guard protecting against non-numeric lookups
+    // Explicit verification guard protecting against non-numeric lookups
     if (!/^\d+$/.test(productId)) {
       return res.status(400).json({ status: "error", message: "Invalid identification code structure format." });
     }
@@ -196,7 +196,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 /**
- * 🧹 CLEANUP FIXED: Centralized global error handling middleware layer.
+ * Centralized global error handling middleware layer.
  * Eliminates scattered try/catch boilerplate blocks across your files.
  */
 app.use((err, req, res, next) => {

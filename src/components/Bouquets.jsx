@@ -4,8 +4,8 @@ import products from "../../server/data/products";
 import ProductCard from "./ProductCard";
 
 export default function Bouquets() {
-  // ⚡ PERFORMANCE FIX: useMemo caches array filtering, preventing recalculations on unrelated renders
-  // 🔒 SECURITY FIX: Added safe optional chaining to prevent undefined array crashes
+  // PERFORMANCE FIX: useMemo caches array filtering, preventing recalculations on unrelated renders
+  // SECURITY FIX: Added safe optional chaining to prevent undefined array crashes
   const bouquetProducts = useMemo(() => {
     if (!Array.isArray(products)) return [];
     return products.filter((item) => item?.category === "Bouquets");

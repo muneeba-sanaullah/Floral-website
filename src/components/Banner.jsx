@@ -178,7 +178,7 @@ export default function Banner() {
                 <button
                   type="button"
                   onClick={() => navigate("/products")}
-                  className="mt-8 bg-white text-[#805374] font-medium py-3 px-8 rounded-full shadow-md hover:bg-white/95 hover:scale-105 active:scale-98 transition-all duration-200 text-sm tracking-wide"
+                  className="mt-8 bg-white cursor-pointer text-[#805374] font-medium py-3 px-8 rounded-full shadow-md hover:bg-white/95 hover:scale-105 active:scale-98 transition-all duration-200 text-sm tracking-wide"
                 >
                   Shop Collection
                 </button>
@@ -187,7 +187,7 @@ export default function Banner() {
           ))}
         </div>
 
-        {/* 💫 MATCHED LEFT ARROW - Softened with bg-white/80 backdrop-blur-sm */}
+        {/* MATCHED LEFT ARROW - Softened with bg-white/80 backdrop-blur-sm */}
         <button
           type="button"
           onClick={handlePrev}
@@ -199,7 +199,7 @@ export default function Banner() {
           </div>
         </button>
 
-        {/* 💫 MATCHED RIGHT ARROW - Softened with bg-white/80 backdrop-blur-sm */}
+        {/* MATCHED RIGHT ARROW - Softened with bg-white/80 backdrop-blur-sm */}
         <button
           type="button"
           onClick={handleNext}
