@@ -12,7 +12,7 @@ const normalizePrice = (price) => {
 };
 
 export default function Cart() {
-  const { cart, increaseQty, decreaseQty, removeFromCart } = useContext(CartContext);
+  const { cart, increaseQty, decreaseQty, removeFromCart, clearCart } = useContext(CartContext);
   const [checkoutLoading, setCheckoutLoading] = React.useState(false);
 
   // ⚡ PERFORMANCE FIX: useMemo caches cart value sums to prevent calculation jank
@@ -56,12 +56,54 @@ export default function Cart() {
       });
 
       const data = await resp.json().catch(() => ({}));
-      localStorage.setItem("lastOrder", JSON.stringify(cart));
+
+      // Create a completedOrder snapshot so the success page can render reliably
+      try {
+        const mockOrder = {
+          session_id: "bloom_" + Math.random().toString(36).substr(2, 9).toUpperCase(),
+          amount_total: totalAmount,
+          itemsList: cart,
+          items: JSON.stringify(cart),
+        };
+        localStorage.setItem("completedOrder", JSON.stringify(mockOrder));
+        try {
+          localStorage.setItem("lastOrder", JSON.stringify(cart));
+        } catch (err) {}
+      } catch (err) {
+        // ignore
+      }
+
+      // clear cart both in state and storage so full-page navigations won't resurrect it
+      try {
+        clearCart();
+      } catch (err) {
+        // ignore
+      }
+      try {
+        localStorage.removeItem("cart");
+      } catch (err) {
+        // ignore
+      }
 
       // Programmatic routing redirects
       window.location.href = data?.url ? data.url : "/checkout/success";
     } catch (err) {
       console.error("Checkout process failed:", err);
+      try {
+        const mockOrder = {
+          session_id: "bloom_" + Math.random().toString(36).substr(2, 9).toUpperCase(),
+          amount_total: totalAmount,
+          itemsList: cart,
+          items: JSON.stringify(cart),
+        };
+        localStorage.setItem("completedOrder", JSON.stringify(mockOrder));
+      } catch (e) {}
+      try {
+        clearCart();
+      } catch (e) {}
+      try {
+        localStorage.removeItem("cart");
+      } catch (e) {}
       window.location.href = "/checkout/success";
     } finally {
       setCheckoutLoading(false);

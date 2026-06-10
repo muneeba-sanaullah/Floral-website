@@ -12,7 +12,6 @@ function CheckoutSuccess() {
       const savedOrder = localStorage.getItem("completedOrder");
       if (savedOrder) {
         const parsed = JSON.parse(savedOrder);
-        // Pre-parse the inner items here once to prevent repetitive parsing in JSX renders
         return { ...parsed, itemsList: typeof parsed.items === "string" ? JSON.parse(parsed.items) : parsed.items };
       }
     } catch (err) {
@@ -24,25 +23,27 @@ function CheckoutSuccess() {
   useEffect(() => {
     // 2. Only generate a new order if one doesn't exist yet and we have items to process
     if (!order && cart.length > 0) {
-      // Calculate total using clean numbers guaranteed by our updated CartContext
       const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
       const mockOrder = {
         session_id: "bloom_" + Math.random().toString(36).substr(2, 9).toUpperCase(),
         amount_total: total,
-        itemsList: cart, // Store the raw object clean in state
-        items: JSON.stringify(cart), // Kept stringified for raw local storage matching if needed
+        itemsList: cart, 
+        items: JSON.stringify(cart),
       };
 
       setOrder(mockOrder);
       localStorage.setItem("completedOrder", JSON.stringify(mockOrder));
       
-      // Execute cleanup frame
-      clearCart();
+      // Execute cleanup frame after order is safely stored
+setTimeout(() => {
+  clearCart();
+}, 0);
+
     }
   }, [cart, order, clearCart]);
 
-  // ⭐ ⭐ RECRUITER PROTECTION: If someone stumbles onto this page with no order, redirect them away
+  // ⭐ ⭐ RECRUITER PROTECTION
   useEffect(() => {
     if (!order && cart.length === 0) {
       const timeout = setTimeout(() => navigate("/products"), 1500);
@@ -62,8 +63,6 @@ function CheckoutSuccess() {
   return (
     <div className="w-full mt-24 px-4 sm:px-6 lg:px-10 max-w-2xl mx-auto">
       <div className="text-center py-12 md:py-16">
-        
-        {/* Beautiful Floating Visual Asset */}
         <div className="w-16 h-16 bg-green-50 text-green-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-6 shadow-sm border border-green-100">
           ✓
         </div>
@@ -76,7 +75,6 @@ function CheckoutSuccess() {
           We've successfully received your floral request. An artisanal receipt details sheet has been dispatched to your email address.
         </p>
 
-        {/* 💼 LUXURY STYLED SUMMARY INVOICE BOX */}
         <div className="mt-10 text-left bg-white border border-[#f1e7e7] rounded-3xl p-6 md:p-8 shadow-[0_4px_20px_rgba(128,83,116,0.02)]">
           <h3 className="text-sm font-semibold uppercase tracking-wider text-[#805374] mb-4 border-b border-gray-100 pb-3">
             Order Manifest
@@ -97,7 +95,6 @@ function CheckoutSuccess() {
             Arrangements Packed:
           </p>
           
-          {/* 📱 MOBILE RESPONSIVE WRAPPING ITEMS LIST */}
           <ul className="space-y-2 divide-y divide-gray-50/50">
             {order.itemsList && order.itemsList.map((item, i) => (
               <li key={item.id || i} className="flex justify-between items-center text-sm pt-2 first:pt-0 text-gray-800">
@@ -110,7 +107,6 @@ function CheckoutSuccess() {
           </ul>
         </div>
 
-        {/* NAVIGATION BUTTON */}
         <div className="mt-10">
           <button
             onClick={() => {
@@ -122,7 +118,6 @@ function CheckoutSuccess() {
             Continue Discovery Collection
           </button>
         </div>
-
       </div>
     </div>
   );

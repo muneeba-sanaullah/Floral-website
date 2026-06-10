@@ -17,7 +17,11 @@ export function CartProvider({ children }) {
 
   useEffect(() => {
     try {
-      localStorage.setItem("cart", JSON.stringify(cart));
+      if (!cart || cart.length === 0) {
+        localStorage.removeItem("cart");
+      } else {
+        localStorage.setItem("cart", JSON.stringify(cart));
+      }
     } catch (err) {
       console.error("Failed to sync cart data to local storage:", err);
     }
@@ -62,7 +66,6 @@ export function CartProvider({ children }) {
   // FIXED: Now clears both state AND localStorage
   const clearCart = () => {
     setCart([]);
-    localStorage.removeItem("cart"); 
   };
 
   const cartCount = useMemo(() => cart.reduce((total, item) => total + item.quantity, 0), [cart]);
