@@ -143,9 +143,13 @@ function Navbar({ liveProducts = [] }) {
           <div className="flex justify-between items-center h-20">
             
             {/* Logo */}
-            <Link to="/" className="text-xl md:text-2xl font-semibold text-[#805374] tracking-tight hover:opacity-90 transition">
-              Bloom & Blossom
-            </Link>
+<Link to="/" className="flex items-center hover:opacity-90 transition">
+  <img
+    src="/perfectlogo.png"
+    alt="Bloom & Blossom Logo"
+    className="h-10 md:h-12 lg:h-14 w-auto max-w-[200px] object-contain mr-4"
+  />
+</Link>
 
             {/* Desktop Controls */}
             <div className="hidden md:flex items-center gap-8">
@@ -315,7 +319,7 @@ function Navbar({ liveProducts = [] }) {
         </div>
       </nav>
 
-      {/* Spacer Element */}
+      {/* Spacer Element - matches navbar height */}
       <div className="h-20" />
     </>
   );

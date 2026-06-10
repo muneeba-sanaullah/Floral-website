@@ -7,23 +7,25 @@ export default function Footer() {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 
-  // Handles smooth form subscriptions natively
+  // Handles smooth form subscriptions with a confirmation alert
   const handleSubscribe = (e) => {
     e.preventDefault();
     if (!email.trim()) return;
+    
+    // Alert confirmation
+    alert(" Thank you for subscribing! We'll keep you updated with our latest floral news.");
     
     // Simulate API integration pipeline trigger
     setSubscribed(true);
     setEmail("");
   };
 
-  // ⚡ CODE CLEANUP: Unified structural container motion options 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.12, // Staggers columns automatically without manual delay tracking classes!
+        staggerChildren: 0.12,
       }
     }
   };
@@ -39,11 +41,9 @@ export default function Footer() {
   };
 
   return (
-    // ⚡ PERFORMANCE FIX: Added native will-change parameters to isolate page composition threads
     <footer className="mt-28 border-t border-[#eadede] bg-[#FFF8F5] will-change-transform">
       <div className="max-w-7xl mx-auto px-6 py-14">
 
-        {/* 🚀 ANIMATION FIX: Framer Motion hooks handle scroll detection cleanly with viewport options */}
         <motion.div 
           variants={containerVariants}
           initial="hidden"
@@ -60,10 +60,10 @@ export default function Footer() {
 
             <p className="mt-4 text-gray-500 text-sm leading-relaxed max-w-md">
               Elegant floral arrangements crafted to celebrate life’s sweetest
-              momments with beauty, softness, and love.
+              moments with beauty, softness, and love.
             </p>
 
-            {/* NEWSLETTER (🔒 SECURITY / ENTER-KEY FORM ACCESSIBILITY FIX) */}
+            {/* NEWSLETTER FORM */}
             <div className="mt-6">
               <p className="text-sm text-[#805374] font-medium mb-2">
                 Get floral updates 🌿
@@ -95,7 +95,7 @@ export default function Footer() {
             </div>
           </motion.div>
 
-          {/* QUICK LINKS LINK SECTION */}
+          {/* QUICK LINKS */}
           <motion.div variants={itemVariants}>
             <h3 className="text-[#805374] font-medium text-sm mb-4 tracking-wide">
               Quick Links
@@ -109,13 +109,12 @@ export default function Footer() {
             </nav>
           </motion.div>
 
-          {/* SOCIAL MEDIA CONNECTIONS PANEL */}
+          {/* SOCIAL MEDIA */}
           <motion.div variants={itemVariants}>
             <h3 className="text-[#805374] font-medium text-sm mb-4 tracking-wide">
               Connect
             </h3>
 
-            {/* 💼 PORTFOLIO QUALITY FIX: Changed dead anchor tags to safe secure programmatic external links */}
             <div className="flex gap-3">
               <a
                 href="https://instagram.com"
@@ -145,10 +144,9 @@ export default function Footer() {
 
         </motion.div>
 
-        {/* BOTTOM METADATA BAR SECTION */}
+        {/* BOTTOM BAR */}
         <div className="border-t border-[#eadede] mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400 text-center sm:text-left">
           <p>© 2026 Bloom & Blossom. All rights reserved.</p>
-
           <p className="flex items-center gap-1.5">
             Made with <span className="text-[#805374] animate-pulse">♥</span> for floral beauty
           </p>

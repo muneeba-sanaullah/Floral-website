@@ -6,19 +6,19 @@ const SLIDES_DATA = [
     id: 1,
     headline: "Fresh Flowers Delivered Daily",
     subheadline: "Handpicked blooms to brighten your day",
-    bgImage: "https://images.unsplash.com/photo-1555231955-348aa2312e19?q=80&w=870&auto=format&fit=crop",
+    bgImage: "https://images.unsplash.com/photo-1568035776460-0061fe356adc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE5fHx8ZW58MHx8fHx8",
   },
   {
     id: 2,
     headline: "Elegant Bouquets for Every Occasion",
     subheadline: "From birthdays to weddings, we’ve got you covered",
-    bgImage: "https://images.unsplash.com/photo-1616508065198-66c1e919ff92?w=800&auto=format&fit=crop&q=60",
+    bgImage: "https://images.unsplash.com/photo-1447875569765-2b3db822bec9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjJ8fGZsb3dlcnxlbnwwfHwwfHx8MA%3D%3D",
   },
   {
     id: 3,
     headline: "Same-Day Delivery Available",
     freshMessage: "Fresh flowers at your doorstep, right on time",
-    bgImage: "https://images.unsplash.com/photo-1585866275382-27b5204031e5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDgzfHx8ZW58MHx8fHx8",
+    bgImage: "https://images.unsplash.com/photo-1536568622990-edaf1f21b76c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D",
   },
 ];
 

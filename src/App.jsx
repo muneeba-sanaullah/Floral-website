@@ -13,6 +13,7 @@ import ArtOfCelebration from "./components/ArtOfCelebration";
 import PageWrapper from "./components/PageWrapper";
 import Reveal from "./components/Reveal";
 import "./index.css";
+import TrustSection from "./components/TrustSection";
 
 // Lazy-loaded page components for maximum loading performance
 const Products = lazy(() => import("./pages/Products"));
@@ -97,6 +98,11 @@ function Home() {
           </div>
         </section>
       </Reveal>
+
+      <Reveal>
+  <TrustSection />
+</Reveal>
+
     </>
   );
 }

@@ -40,11 +40,11 @@ function About() {
         <section className="px-6">
           <div className="max-w-5xl mx-auto overflow-hidden rounded-2xl shadow-sm">
             <img
-              src="https://images.unsplash.com/photo-1526045612212-70caf35c14df?auto=format&fit=crop&w=1200&q=80"
-              alt="Artisanal floral arrangement with white and pink roses in a studio workshop setting"
-              loading="lazy" 
-              className="w-full h-64 sm:h-96 md:h-[500px] object-cover hover:scale-102 transition-transform duration-700 ease-out"
-            />
+  src="https://plus.unsplash.com/premium_photo-1676997843315-f5b433883c7d?auto=format&fit=crop&q=80&w=2400"
+  alt="Artisanal floral arrangement"
+  loading="lazy" 
+  className="w-full h-64 sm:h-96 md:h-[500px] object-cover hover:scale-102 transition-transform duration-700 ease-out"
+/>
           </div>
         </section>
       </Reveal>

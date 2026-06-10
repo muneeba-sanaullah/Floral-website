@@ -1,5 +1,7 @@
 import React, { useContext, useMemo } from "react";
 import { CartContext } from "../context/CartContext";
+import { useNavigate } from "react-router-dom";
+
 
 // Utility function to safely normalize prices into real numbers anywhere
 const normalizePrice = (price) => {
@@ -12,6 +14,7 @@ const normalizePrice = (price) => {
 };
 
 export default function Cart() {
+  const navigate = useNavigate();
   const { cart, increaseQty, decreaseQty, removeFromCart, clearCart } = useContext(CartContext);
   const [checkoutLoading, setCheckoutLoading] = React.useState(false);
 
@@ -117,11 +120,18 @@ export default function Cart() {
       </h2>
 
       {cart.length === 0 ? (
-        <div className="text-center py-16 bg-white/30 backdrop-blur-md rounded-2xl p-8 border border-gray-100 max-w-md mx-auto">
-          <p className="text-gray-500 font-medium">Your cart is empty</p>
-          <p className="text-gray-400 text-sm mt-1">Add some beautiful blossoms to get started!</p>
-        </div>
-      ) : (
+  <div className="text-center py-16 bg-white/30 backdrop-blur-md rounded-2xl p-8 border border-gray-100 max-w-md mx-auto">
+    <p className="text-gray-500 font-medium">Your cart is empty</p>
+    <p className="text-gray-400 text-sm mt-1 mb-6">Add some beautiful blossoms to get started!</p>
+    
+    <button
+      onClick={() => navigate("/products")}
+      className="bg-[#805374] text-white px-6 py-2 rounded-full text-sm font-medium shadow-md cursor-pointer hover:opacity-90 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 w-full sm:w-auto"
+    >
+      Browse Collections
+    </button>
+  </div>
+) : (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
           
           {/* ITEMS LIST COLUMN */}
@@ -217,6 +227,7 @@ export default function Cart() {
               <span>Total Amount</span>
               <span className="text-[#805374]">Rs. {totalAmount.toLocaleString()}</span>
             </div>
+            
 
             {/* DOUBLE-CLICK LOCKOUT BUTTON CONTROL */}
             <button

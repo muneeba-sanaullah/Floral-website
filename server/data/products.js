@@ -443,7 +443,31 @@ const products = [
   image: "https://images.unsplash.com/photo-1659155222062-54b1bfb60f4d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fEx1eHVyeSUyME9yY2hpZCUyMFZhc2V8ZW58MHx8MHx8fDA%3D",
   category: "Bouquets",
   bestSeller: true
-}
+},
+{
+    id: 61,
+    name: "Velvet Rose Ensemble",
+    price: 4800,
+    image: "https://images.unsplash.com/photo-1642991945834-e3da86dcd75d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8VmVsdmV0JTIwUm9zZSUyMEVuc2VtYmxlfGVufDB8fDB8fHww",
+    category: "Bouquets",
+    bestSeller: true
+  },
+  {
+    id: 62,
+    name: "Ethereal Peony Garden",
+    price: 6200,
+    image: "https://images.unsplash.com/photo-1624649679218-da031d4cd2d8?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    category: "Bouquets",
+    bestSeller: false
+  },
+  {
+    id: 63,
+    name: "Midnight Tulip Arrangement",
+    price: 4200,
+    image: "https://media.istockphoto.com/id/490133838/photo/purple-tulips-on-black-chair-with-green-cushion.webp?a=1&b=1&s=612x612&w=0&k=20&c=R62C8tbJAcRrjWUB_eqFI5jWsqI73iLpQZqTzjOtySw=",
+    category: "Bouquets",
+    bestSeller: true
+  },
 ];
 
 export default [...products].sort(() => Math.random() - 0.5);
