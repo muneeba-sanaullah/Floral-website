@@ -192,7 +192,7 @@ export default function Banner() {
           type="button"
           onClick={handlePrev}
           aria-label="Previous slide"
-          className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-30"
+          className="hidden md:flex cursor-pointer absolute left-4 top-1/2 -translate-y-1/2 z-30"
         >
           <div className="p-3 rounded-full bg-white/80 backdrop-blur-sm shadow-sm transition-all duration-300 hover:scale-110 select-none text-xl leading-none">
             ‹
@@ -204,7 +204,7 @@ export default function Banner() {
           type="button"
           onClick={handleNext}
           aria-label="Next slide"
-          className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-30"
+          className="hidden md:flex cursor-pointer absolute right-4 top-1/2 -translate-y-1/2 z-30"
         >
           <div className="p-3 rounded-full bg-white/80 backdrop-blur-sm shadow-sm transition-all duration-300 hover:scale-110 select-none text-xl leading-none">
             ›
